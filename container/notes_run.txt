@@ -1,0 +1,19 @@
+
+# Terminal 1
+
+python generate_token.py > container/container-config/user_token.json
+python manage.py runserver 0.0.0.0:8000
+
+
+# Terminal2
+cd container
+./run.sh 
+
+## Copy paste the following
+
+from sqlshield import SQLShield
+client = SQLShield(api_url="http://host.docker.internal:8000/api")
+print(client.list_databases())
+print(client.list_tables("mydb"))
+print(client.run_sql("mydb", "SELECT * FROM example_table"))
+

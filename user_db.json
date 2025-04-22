@@ -1,0 +1,7 @@
+{
+  "user123": {
+    "databases": {
+      "mydb": "sqlite:///data/user123.db"
+    }
+  }
+}
