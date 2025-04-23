@@ -42,6 +42,7 @@ class PythonDockerREPL:
         self.child.sendline(
             f"import sys; sys.ps1='{prompt}'; sys.ps2='{prompt}'")
         self.child.expect_exact(prompt)      # wait until the prompt is ready
+        res = self.run('pass')
 
     def run(self, code: str) -> str | None:
         """
@@ -78,3 +79,9 @@ class PythonDockerREPL:
         """Terminate the interpreter and the container."""
         self.child.sendline("exit()")
         self.child.close(force=True)
+
+if __name__ == '__main__':
+    repl = PythonDockerREPL()
+    repl.run("import math")
+    print(repl.run("math.sqrt(2)"))   # -> '1.4142135623730951'
+    repl.close()
