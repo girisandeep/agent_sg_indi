@@ -1,5 +1,4 @@
 
-
 # Terminal 1
 
 python generate_token.py > container/container-config/user_token.json
@@ -26,3 +25,12 @@ df.head()
 
 # python manage chat_agent
 We have a CSV file store at location '/uploads/certificates.csv' containing the certificates awarded. We want to find out all the payment transactions of the fees paid by them with one time or in EMIs. Then we want to find out how much was the revenue via Instamojo and via Stripe.
+
+========
+# Overall FLow
+
+1. Django Command -> 2. LLM --> 3. code snippet --> 4. Container --> 5. db requests -> 6. Django - SQL Shield --> Database
+
+ 1. python manage.py chat_agent
+ 4. cd container; ./run.sh
+ 
