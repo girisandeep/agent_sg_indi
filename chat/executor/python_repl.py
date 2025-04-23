@@ -32,6 +32,7 @@ if __name__ == "__main__":
     print(repl.run("x = 10"))
     print(repl.run("x + 5"))
     repl.close()
+    print("-----------------")
 
     repl = PythonDockerREPL()
 
@@ -44,8 +45,22 @@ if __name__ == "__main__":
     run1 = repl.run("greet('Sandeep')")
 
     repl.close()
-
     print("-----------------")
     print(def1)
     print('--')
     print(run1)
+    print("-----------------")
+    repl = PythonDockerREPL()
+
+    code = textwrap.dedent("""def greet(name):
+        print(f"Hi {name}!")
+        print(f"Hi {name}!")
+    greet("XYZ")
+    """)
+
+    def1 = repl.run(code)
+    # run1 = repl.run("greet('Sandeep')")
+    repl.close()
+    print(def1)
+    print("-----------------")
+
