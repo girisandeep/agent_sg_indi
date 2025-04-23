@@ -12,9 +12,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'chat',
 ]
 
-MIDDLEWARE = []
+MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware'
+]
 
 ROOT_URLCONF = 'sqlshield_backend.urls'
 TEMPLATES = []
@@ -26,7 +29,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+import os
+
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "frontend", "dist"),
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': ['rest_framework.renderers.JSONRenderer'],

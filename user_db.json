@@ -1,7 +1,7 @@
 {
   "user123": {
     "databases": {
-      "mydb": "sqlite:///data/user123.db"
+      "chinook": "sqlite:////Users/sandeepgiri/projects/llm-sql-shield/tests/chinook.db"
     }
   }
 }

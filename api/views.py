@@ -26,7 +26,7 @@ def decode_jwt(request):
 def list_databases(request):
     try:
         user_id, dbs = decode_jwt(request)
-        return Response(list(dbs.keys()))
+        return Response({db:'' for db in dbs.keys()})
     except Exception as e:
         return Response({"error": str(e)}, status=403)
 
@@ -39,7 +39,8 @@ def list_tables(request):
             return Response({"error": "Invalid database"}, status=400)
         engine = sqlalchemy.create_engine(dbs[db])
         inspector = sqlalchemy.inspect(engine)
-        return Response(inspector.get_table_names())
+
+        return Response({tn:tn for tn in inspector.get_table_names()})
     except Exception as e:
         return Response({"error": str(e)}, status=400)
 
@@ -56,9 +57,6 @@ def run_sql(request):
         parsed = parse_one(query)
         if not isinstance(parsed, exp.Select):
             return Response({"error": "Only SELECT queries allowed"}, status=403)
-
-        if not parsed.args.get("limit"):
-            parsed.set("limit", exp.Limit(this=exp.Literal.number(MAX_ROWS)))
 
         final_query = parsed.sql()
         engine = sqlalchemy.create_engine(dbs[db])

@@ -19,13 +19,10 @@ RUN pip install --no-cache-dir --upgrade pip && \
     scikit-learn \
     matplotlib \
     seaborn \
-    jupyter \
-    ipython \
     torch \
     torchvision \
     torchaudio \
-    tensorflow \
-    notebook
+    tensorflow
 
 WORKDIR /workspace
 COPY terno.py /workspace/terno.py

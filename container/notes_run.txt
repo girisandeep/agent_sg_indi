@@ -1,4 +1,5 @@
 
+
 # Terminal 1
 
 python generate_token.py > container/container-config/user_token.json
@@ -6,14 +7,22 @@ python manage.py runserver 0.0.0.0:8000
 
 
 # Terminal2
+
 cd container
+
+# [Optional] Build the docker
+docker build -t blazing-python-ds .
+
 ./run.sh 
 
 ## Copy paste the following
 
-from sqlshield import SQLShield
-client = SQLShield(api_url="http://host.docker.internal:8000/api")
-print(client.list_databases())
-print(client.list_tables("mydb"))
-print(client.run_sql("mydb", "SELECT * FROM example_table"))
+from terno import *
+list_databases()
+list_tables("chinook")
+df = run_sql('chinook', 'select * from Customer')
+df.head()
 
+
+# python manage chat_agent
+We have a CSV file store at location '/uploads/certificates.csv' containing the certificates awarded. We want to find out all the payment transactions of the fees paid by them with one time or in EMIs. Then we want to find out how much was the revenue via Instamojo and via Stripe.
