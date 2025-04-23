@@ -21,6 +21,6 @@ def list_databases():
 def list_tables(db):
     return ternoclient._request("list_tables", {"database": db})
 
-def run_sql(db, query):
-    df_dict = ternoclient._request("run_sql", {"database": db, "query": query})
+def execute_sql(db, query):
+    df_dict = ternoclient._request("execute_sql", {"database": db, "query": query})
     return pd.DataFrame(df_dict)

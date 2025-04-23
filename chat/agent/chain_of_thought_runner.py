@@ -1,6 +1,6 @@
 from chat.llms import get_llm_client
-from chat.executor.chatgpt.code_executor import execute_code
-from chat.executor.chatgpt.python_docker_repl import PythonDockerREPL
+
+from chat.executor.python_docker_repl import PythonDockerREPL
 import re
 
 CHAIN_OF_THOUGHT_PROMPT = '''You are a highly intelligent and autonomous AI programming agent that solves data science tasks step-by-step with precision and clarity.
@@ -121,6 +121,7 @@ def run_chain_of_thought_loop(question, chat_history=None, repl=None):
             response += chunk
 
         llm.chat(chat_history, stream_callback=capture_stream)
+        print("Response: ", response)
         chat_history.append({"role": "assistant", "content": response})
 
         if "Terminate" in response:

@@ -30,7 +30,9 @@ class PythonDockerREPL:
         """
         self.prompt = prompt
         # -q suppresses the banner; --rm auto-removes the container on exit.
-        docker_cmd = f"docker run --rm -it {image} python -q"
+        pwd = '/Users/sandeepgiri/projects/sqlshield_django/container'
+        volumes = f'-v {pwd}/container-uploads:/workspace/uploads  -v {pwd}/container-config:/workspace/config '
+        docker_cmd = f"docker run --rm -it {volumes} {image} python -q"
 
         # Spawn the process; echo=False stops pexpect from duplicating our input.
         self.child = pexpect.spawn(docker_cmd,

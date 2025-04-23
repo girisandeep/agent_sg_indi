@@ -45,7 +45,7 @@ def list_tables(request):
         return Response({"error": str(e)}, status=400)
 
 @api_view(["POST"])
-def run_sql(request):
+def execute_sql(request):
     try:
         user_id, dbs = decode_jwt(request)
         db = request.data.get("database")
