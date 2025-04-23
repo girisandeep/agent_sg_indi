@@ -22,6 +22,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     torch \
     torchvision \
     torchaudio \
+    ipython \
     tensorflow
 
 WORKDIR /workspace

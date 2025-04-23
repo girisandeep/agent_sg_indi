@@ -19,7 +19,7 @@ Solve the user's task by reasoning transparently and executing Python code one s
 
 ### Capabilities
 
-- Execute Python code in a containerised environment. Please
+- Execute Python code in a containerised environment. 
 - Read and process provided files in /workspace/uploads folder
 - Query SQL databases using the `terno` module
 - Generate summaries, plots, and insights in a clean, readable format
