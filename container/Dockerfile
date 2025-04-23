@@ -1,14 +1,14 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# System dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
-    git \
-    curl \
-    wget \
-    && apt-get clean
+    libopenblas-dev \
+    libffi-dev \
+    libssl-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Upgrade pip and install popular data science libraries
 RUN pip install --no-cache-dir --upgrade pip && \
@@ -28,9 +28,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
     notebook
 
 WORKDIR /workspace
-COPY sqlshield.py /workspace/sqlshield.py
+COPY terno.py /workspace/terno.py
+
 VOLUME ["/workspace/uploads", "/workspace/config"]
 
 CMD ["python3"]
-
-
